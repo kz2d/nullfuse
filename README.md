@@ -13,9 +13,9 @@
 To build and install **nullfuse** simply follow these steps:
 
 ```bash
-$ mkdir _build && cd _build
-$ cmake ..
-$ make
+mkdir _build && cd _build
+cmake ..
+make
 ```
 
 ## Usage
@@ -24,20 +24,20 @@ $ make
 You can find it in build directory
 
 ```bash
-$ nullfuse /mnt/nullfuse
+nullfuse /mnt/nullfuse
 ```
 
 To unmount the filesystem use:
 
 ```bash
-$ fusermount -uz /mnt/nullfuse
+fusermount -uz /mnt/nullfuse
 ```
 
 All created files and directories, along with their metadata, are persisted in memory until the **nullfuse** is unmounted. All data written to files in that filesystem however is lost, i.e. they act as `/dev/null` device. When reading the files which have non-zero size, the reading process will receive a sequence of `x` characters. e.g.
 
 ```bash
-$ echo TEST > /mnt/nullfuse/file.txt
-$ cat /mnt/nullfuse/file.txt
+echo TEST > /mnt/nullfuse/file.txt
+cat /mnt/nullfuse/file.txt
 xxxx
 ```
 
@@ -48,21 +48,21 @@ Below are some examples of what can be tested with the **nullfuse** filesystem:
 ### Measure performance of directory creation
 
 ```bash
-$ time mkdir -p {00..99}/{00..99}         
+time mkdir -p {00..99}/{00..99}         
 mkdir -p {00..99}/{00..99}  0,01s user 0,12s system 99% cpu 0,129 total
 ```
 
 ### Measure performance of file creation
 
 ```bash
-$ time touch {00..99}/{00..99}/file.txt    
+time touch {00..99}/{00..99}/file.txt    
 touch {00..99}/{00..99}/file.txt  0,00s user 0,09s system 93% cpu 0,105 total
 ```
 
 ### Measure write throughput 
 
 ```bash
-$ dd if=/dev/zero of=file.txt bs=1M count=1000
+dd if=/dev/zero of=file.txt bs=1M count=1000
 1000+0 records in
 1000+0 records out
 1048576000 bytes (1,0 GB, 1000 MiB) copied, 0,577779 s, 1,8 GB/s
@@ -71,7 +71,7 @@ $ dd if=/dev/zero of=file.txt bs=1M count=1000
 ### Measure read throughput 
 
 ```bash
-$ dd if=file.txt of=/dev/null bs=1M
+dd if=file.txt of=/dev/null bs=1M
 1000+0 records in
 1000+0 records out
 1048576000 bytes (1,0 GB, 1000 MiB) copied, 0,128954 s, 8,1 GB/s
