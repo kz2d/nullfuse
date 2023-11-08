@@ -16,12 +16,12 @@ To build and install **nullfuse** simply follow these steps:
 $ mkdir _build && cd _build
 $ cmake ..
 $ make
-$ make install
 ```
 
 ## Usage
 
 **nullfuse** can be mounted by running the `nullfuse` binary with provided mount point, e.g.
+You can find it in build directory
 
 ```bash
 $ nullfuse /mnt/nullfuse
