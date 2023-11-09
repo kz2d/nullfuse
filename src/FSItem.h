@@ -15,17 +15,18 @@
 #include "FSFileInfo.h"
 #include <iostream>
 
-class FSItem {
-	protected:
-	std::string name;
+class FSItem
+{
+protected:
 	std::shared_ptr<FSFileInfo> finfo;
-	std::map<std::string, std::shared_ptr<FSItem> > flist;
-	virtual ~FSItem()=default;
-	public:
+	std::map<std::string, std::shared_ptr<FSItem>> flist;
+	virtual ~FSItem() = default;
+
+public:
+	std::string name;
 	FSItem(std::string itemName);
 	std::shared_ptr<FSItem> getFile(std::string name);
 	std::shared_ptr<FSFileInfo> getMeta();
-	std::map<std::string, std::shared_ptr<FSItem> > getFlist();
-	
+	std::map<std::string, std::shared_ptr<FSItem>> getFlist();
 };
 #endif
