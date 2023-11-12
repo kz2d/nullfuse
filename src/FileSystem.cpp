@@ -6,6 +6,9 @@
  * 'LICENSE.txt'
  */
 #include "FileSystem.h"
+
+#define IO_WAIT_TIME _IO_WAIT_TIME
+
 std::shared_ptr<FSDir> FileSystem::root = nullptr;
 FileSystem::FileSystem(int argc, char **argv)
 {
@@ -155,6 +158,11 @@ int FileSystem::do_write(const char *path, const char *buffer, size_t size, off_
 {
 	auto f = getFileHandle(std::string(path));
 	std::dynamic_pointer_cast<FSFile>(f)->setFileContents(size + offset);
+
+	if (IO_WAIT_TIME != 0)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(IO_WAIT_TIME));
+	}
 	return size;
 }
 int FileSystem::do_open(const char *path, struct fuse_file_info *finfo)

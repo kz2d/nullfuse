@@ -13,6 +13,8 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <chrono>
+#include <thread>
 #include "FSDir.h"
 #include "FSFile.h"
 
